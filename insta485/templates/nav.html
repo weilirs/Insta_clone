@@ -1,0 +1,8 @@
+<h1><a href="/">insta485</a></h1>
+{% if logname %}
+<a href="/explore/">explore</a> |
+<a href="/u/{{logname}}/">{{logname}}</a>
+{% else %}
+<a href="/accounts/login/">login</a>
+{% endif %}
+<br>

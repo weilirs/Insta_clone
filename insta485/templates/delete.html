@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<head>
+    <title>Delete</title>
+  </head>
+{% include "nav.html" %}
+<!-- DO NOT CHANGE THIS -->
+{{logname}}<br>
+<form action="/accounts/?target=create" method="post" enctype="multipart/form-data">
+    <input type="submit" name="delete" value="confirm delete account" />
+    <input type="hidden" name="operation" value="delete" />
+</form>

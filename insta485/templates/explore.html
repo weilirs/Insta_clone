@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Explore</title>
+  </head>
+  {% include "nav.html" %}
+    <!-- icon -->
+  <h1>Discover People</h1>
+  {% for user in users %}
+  <img src = "/uploads/{{user.filename}}" alt="img1" width="100" height="100"> 
+  <p>{{user.username}} <a href="/u/{{user.username}}/">user page</a></p>
+  <!-- follow button -->
+  <form action="/following/?target=/explore/" method="post" enctype="multipart/form-data">
+    <input type="submit" name="follow" value="follow"/>
+    <input type="hidden" name="username" value="{{user.username}}"/>
+    <input type="hidden" name="operation" value="follow"/>
+  </form>
+  {% endfor %}
+</html>

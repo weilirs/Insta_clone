@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Post</title>
+  </head>
+  {% include "nav.html" %}
+
+  <h1>{{user.username}}</h1>
+  
+  {% if posts_num == 1 %}
+  <p>{{posts_num}} post</p>
+  {% else %}
+  <p>{{posts_num}} posts</p>
+  {% endif %}
+  
+  {% if following == "following" %}
+  following <form action="/following/?target={{user.username}}" method="post" enctype="multipart/form-data">
+    <input type="submit" name="unfollow" value="unfollow"/>
+    <input type="hidden" name="username" value="{{user.username}}"/>
+    <input type="hidden" name="operation" value="unfollow"/>
+  </form>
+  {% elif following == "not following" %}
+  not following <form action="/following/?target={{user.username}}" method="post" enctype="multipart/form-data">
+    <input type="submit" name="follow" value="follow"/>
+    <input type="hidden" name="username" value="{{user.username}}"/>
+    <input type="hidden" name="operation" value="follow"/>
+  </form>
+  {% endif %}
+
+  {% if followers_num == 1 %}
+  <p>{{followers_num}} <a href="{{"/u/%s/followers/"|format(user.username)}}">followers</a></p>
+  {% else %}
+  <p>{{followers_num}} <a href="{{"/u/%s/followers/"|format(user.username)}}">followers</a></p>
+  {% endif %}
+  
+  {% if following_num == 1 %}
+  {{following_num}} <a href="/u/{{user.username}}/following/">following</a>
+  {% else %}
+  {{following_num}} <a href="/u/{{user.username}}/following/">following</a>
+  {% endif %}
+  
+  <p>{{name.fullname}}</p>
+  
+  {% for post in posts_context %}
+  <a href="/p/{{post.postid}}/"><img src = "/uploads/{{post.url}}" alt="img1" width="100" height="100">></a>
+  {% endfor %}
+  
+  {% if following == "myself" %}
+  <p><a href="/accounts/edit/">Edit profile</a></p>
+  <form action="/accounts/logout/" method="post" enctype="multipart/form-data">
+    <input type="submit" name="logout" value="Logout"/>
+  </form>
+  <form action="/posts/?target=/u/{{user.username}}/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required/>
+    <input type="submit" name="create_post" value="upload new post"/>
+    <input type="hidden" name="operation" value="create"/>
+  </form>
+  {% endif %}
+
+</html>

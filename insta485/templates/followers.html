@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Post</title>
+  </head>
+  {% include "nav.html" %}
+
+  <h1>Followers</h1>
+  
+  {% for user in ret %}
+  <img src = "/uploads/{{user.icon}}" alt="img1" width="100" height="100">> <a href="/u/{{user.username}}/">{{user.username}} </a> {% if user.login_following == "following" %}
+    following <form action="/following/?target=/u/{{current}}/following/" method="post" enctype="multipart/form-data">
+      <input type="submit" name="unfollow" value="unfollow"/>
+      <input type="hidden" name="username" value="{{user.username}}"/>
+      <input type="hidden" name="operation" value="unfollow"/>
+    </form>
+    {% elif user.login_following == "not following" %}
+    not following <form action="/following/?target=/u/{{current}}/following/" method="post" enctype="multipart/form-data">
+      <input type="submit" name="follow" value="follow"/>
+      <input type="hidden" name="username" value="{{user.username}}"/>
+      <input type="hidden" name="operation" value="follow"/>
+    </form>
+    {% endif %}
+  {% endfor %}
+  
+</html>

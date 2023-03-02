@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head>
+    <title>Edit</title>
+  </head>
+{% include "nav.html" %}
+<img src="{{img}}" alt="{{logname}}" />
+{{logname}}
+<br>
+<!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+<form action="/accounts/?target=edit" method="post" enctype="multipart/form-data">
+    picture <input type="file" name="file" /><br>
+    fullname <input type="text" name="fullname" value="{{fullname}}" /><br>
+    email <input type="text" name="email" value="{{email}}" /><br>
+    <input type="submit" name="update" value="submit" />
+    <input type="hidden" name="operation" value="edit_account" />
+</form>
+<br>
+<a href="/accounts/password/">change password</a><br>
+<a href="/accounts/delete/">delete account</a><br>

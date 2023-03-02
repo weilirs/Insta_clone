@@ -1,0 +1,10 @@
+{% include "nav.html" %}
+<!-- DO NOT CHANGE THIS (aside from styling) -->
+<form action="/accounts/?target=" method="post" enctype="multipart/form-data">
+    username <input type="text" name="username" required /><br>
+    password <input type="password" name="password" required /><br>
+    <input type="submit" value="login" />
+    <input type="hidden" name="operation" value="login">
+</form>
+<br>
+<a href="/accounts/create/">create</a><br>
